@@ -35,7 +35,7 @@ header nav ul li a:hover, #nav_current { color: #fff; background: rgba(20, 20, 2
 .linkmore li{position: relative;}
 .linkmore li a { height: 50px; width: 50px; display: block; overflow: hidden; box-shadow: 0px 1px 0px rgba(255,255,255,.1), inset 0px 1px 1px rgba(0,0,0,.7); border-radius: 50%; float: left; margin: 0 6px; }
 .linkmore li a:hover { opacity: 0.5; -webkit-transform: rotate(30deg); -ms-transform: rotate(30deg); -moz-transform: rotate(30deg); -o-transform: rotate(30deg); transform: rotate(30deg); }
-.linkmore li:first-of-type img{position: absolute; top:52px; left: -14px;}
+.linkmore li:first-of-type img{position: absolute; top:52px; left: -14px;z-index: 1}
 .talk, .address, .email, .photos, .heart { background: url(../images/icons.png) no-repeat; }
 .talk { background-position: 0 1px; background-image: url(../images/jinglingtubiao_r2_c2.jpg); }
 .address { background-position: 12px -22px }
