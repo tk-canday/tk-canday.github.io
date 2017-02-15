@@ -1,5 +1,5 @@
 // //card 模块图标显示
-$('.talk').mouseenter(function(event) {
+$('.linkmore>li>a ').mouseenter(function(event) {
     $(this).next().show();
 });
 $('.linkmore>li >a').mouseleave(function(event) {
