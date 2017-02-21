@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" href="../images/shortcuticon.jpg">
+    <style>
+
+    </style>
+    <title>关于css中的清除浮动与闭合浮动</title>
+
+    <!-- Web App Manifest -->
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/tk-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="../css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0../css/font-awesome.min.css" rel="stylesheet" type="text../css"> -->
+    <!-- tk change font-awesome CDN to qiniu -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+    </head>
+
+    <body>
+	<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../index.html">tk-Canday Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="tkblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+               
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <header class="intro-header" >
+    <div class="header-mask"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                                             
+                        <a class="tag" href="../index.html" title="首页">返回首页</a>
+                        
+                    </div>
+                    <h1> 关于css中的清除浮动与闭合浮动？</h1>
+                    
+                    <h2 class="subheading"></h2>
+                    
+                    <span class="meta">Posted by tk-canday on February
+ 14, 2016</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div style='padding:0 15%;text-indent:20px;'>
+　　　<p>在给HTML添加样式的构成中，css是必不可少的的，然而css中有一些功能的实现可以通过不同的方法实现，通过效果查看好像并没有什么不同，那它们之间到底有什么本质区别呢，又有哪些概念被我们无意的忽略或者无视了呢，突然想总结总结这一类的问题，本篇随笔算是本人对于“清除浮动”的归纳吧.</p>
+
+　　　
+
+ <br>为什么要清楚浮动
+
+<p>在布局的时候我们经常希望某些内容能够水平排布，水平排布后，由于内部内容不确定，高度不能简单的给一个定值。而如果不给高度，子元素又都浮动了，父盒子就会因为没有子盒子的支撑而塌陷。</p>
+
+<br>1. 清除浮动的方法
+
+<p>其实在根本上来说，清除浮动主要有二个方法： 清除周围的浮动元素（闭合浮动）， 清除子元素浮动对父元素的影响（清除浮动）。</p>
+
+<br>但这两种方法可以用不同的方法实现，那我想简单介绍一下他们的利弊。
+
+ 
+
+<br>1.1.1. 额外标签法
+
+<br>原理：单独使用一个标签加上clear:both跑到浮动元素下面，从而消除子盒子浮动造成的父盒子塌陷。
+
+<br>典型网站：京东
+
+<br>优点：通俗易懂，容易掌握
+
+<br>缺点：添加很多无意义的空标签，不符合结构与表现分离的原则，不利于后期维护
+
+<br>1.1.2. 父元素设置overflow：hidden
+
+<br>原理：让父盒子形成BFC，BFC的特性之一就是可以承载浮动元素
+
+<br>优点：不存在结构和语义化问题，代码量极少
+
+<br>缺点：内容增多时候容易造成不会自动换行导致内容被隐藏掉，无法显示需要溢出的元素
+
+ 
+
+<br>1.1.3. 单伪元素
+<pre>
+    
+.clearfix:after {
+    content: "";
+    height: 0;
+    visibility: hidden;
+    overflow: hidden;
+    dispaly: block;/*不是inline就行*/
+    clear: both;
+}
+.clearfix {
+    *zoom: 1;/*IE67*/
+}
+
+</pre>
+ 
+
+ 
+
+<br>1.1.4. 双伪元素
+
+<pre>
+    .clearfix:before, .clearfix:after {
+    content: "";
+    display: table;/*不是inline就行*/
+}/*在有该类的元素内部元素的前面和后面添加元素*/
+
+.clearfix:after {
+    clear: both;
+}/*只要after两侧有浮动元素，after就会跑到最下面，从而撑开带有该类名的父盒子*/
+
+.clearfix {
+    *zoom: 1;
+} /*用于兼容IE/7/6*/
+
+</pre>
+ 
+
+ <br>用display:table是因为display:block伪元素仍然有宽度
+
+<br>加了一个before是为了防止外边距合并。
+
+ 
+
+</div>
+    </body>
+</html>

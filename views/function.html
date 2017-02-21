@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" href="../images/shortcuticon.jpg">
+    <style>
+
+    </style>
+    <title>javascript中的函数?</title>
+
+    <!-- Web App Manifest -->
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/tk-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="../css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0../css/font-awesome.min.css" rel="stylesheet" type="text../css"> -->
+    <!-- tk change font-awesome CDN to qiniu -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+    </head>
+
+    <body>
+	<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../index.html">tk-Canday Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="tkblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+               
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <header class="intro-header" >
+    <div class="header-mask"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                                             
+                        <a class="tag" href="../index.html" title="首页">返回首页</a>
+                        
+                    </div>
+                    <h1> JavaScript中的函数有什么特点?<br> 应该怎样优化?</h1>
+                    
+                    
+                    <h2 class="subheading"></h2>
+                    
+                    <span class="meta">Posted by tk-canday on May 21, 2016</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div style='padding:0 15%;text-indent:20px;'>
+<pre style='background-color:white;font-size:16px;font-weight:600;'>
+    函数 与 优化
+
+1. 函数构造方法: js中所有函数的构造函数都是Function,包括Function本身,(Function是自己的实例,也是自己的构造函数)
+
+证明:
+ Function.prototype === Function.__proto__
+ 1.1 函数声明: function 函数名(){}
+
+1.2函数表达式: var 函数名 = function(){};
+
+1.3构造函数: var 函数名 = new Function(参数1,参数2,函数体);
+
+    1. 不传参数创建出来的是空函数.
+    2. 一个参数:函数体(字符串).
+    3. 传多个参数的情况:(字符串).
+    例:简单的求两个数和:
+　　　
+　    var sum = new Function('a','b','return a + b');
+        sum(1,2);
+        注:传参数时候可以使用:拼接字符串或反引号(ES6方法)或者创建模板引擎
+2. 访问函数的方法:
+
+2.1. 函数调用模式: 函数名();
+
+    this:指向window
+2.2. 方法调用模式: 对象.函数名();
+
+    this:谁调用就指向谁
+2.3. 构造函数调用模式 :new 函数名();
+
+    this:指向new出来的对象
+2.4. 上下文调用模式 : 解决this作为左值不能赋值的问题
+
+    左值(LValue):能正常的在等号左边被赋值的值
+    右值(RValue):能正常的在等号右边赋值的值
+* 语法:1 函数名.call(this指向,实参,实参)
+    注意:  1当传入的第一个参数为undefined或Null时,指向的是window
+           2当传入的第一个参数为简单数据类型时,this指向该数据的基本包装类型
+* 语法:2 函数名.apply(this指向,数组或伪数组)
+    注意:第一个参数与call语法相同,后面的数组参数中的元素拆解后传给函数
+3. eval(符合js语法规范的字符串) 函数:
+
+* 功能:将字符串转化为代码并执行;
+*    1.eval与Function()的共同点:将字符串转化为代码;
+    2.不同点:Function()转化成代码之后是函数,需要手动调用才能执行,eval()会直接执行
+* Function与eval的问题
+    1.需要预解析,执行效率问题
+    2.安全性问题(如果别人输入的内容符合规范,可以进行跨站脚本攻击xss)
+    3.eval会将json字符串中的{}当做代码段处理,所以会报错
+        处理:在json字符串外面拼接小括号易形成一段完整的语句;
+            把变量声明也写在eval参数中:
+  var jsonStr = {"key":"value"};
+  eval("var obj =" + jsonStr);
+
+4. json2.js:引入解决IE7及以下版本JSON未定义问题。
+
+json2.js提供了json的序列化和反序列化方法，可以将一个json对象转换成json字符串，也可以将一个json字符串转换成一个json对象。
+源码地址:https://github.com/douglascrockford/JSON-js
+4.1. json2.js使用基本模型:
+
+//在页面中添加json2.js的引用。
+<--引入json2.js文件-->
+
+<script type="text/javascript" src="JS/json2.min.js"></script>　　
+
+　　 //序列化方法
+
+ 　　var jsonObj = { id: '01', name: 'Tom' };
+    JSON.stringify(jsonObj);
+    //反序列化方法
+    var jsonString = '{ "id": "01", "name": "Tom" }';
+    JSON.parse(jsonString);
+ 
+
+5. 函数对象的成员
+
+* arguments    
+* caller    函数在哪个环境中调用的,就指向谁,如果函数是在全局环境下调用的,指向Null
+* length    形参个数
+* name    函数函数声明与函数表达式创建出的name为函数名,new Function()创建的函数name为'anonymity'
+5.1. arguments对象:是一个函数内部的对象(执行环境在函数内部),是伪数组.
+
+1  伪数组:有length属性(但是不会动态改变),可以被遍历,但没有数组的方法.    
+2  arguments对象:
+    * 作用:当函数调用的时候会将所有实参一次存入伪数组中(无论形参与实参个数是否对应).
+    * 应用场景:当时参数个数不确定的时候,就可以不用写形参直接用arguments    获取实参.
+    * 属性:
+        1.length    判断用户调用函数时输入的实参个数
+        2.callee    指向    arguments对象 所在的这个    函数!
+6. 重载:overload
+
+重载:根据参数个数的不同,调用相同函数名函数不同的功能;
+JavaScript没有重载!不过可以根据arguments属性的长度判断来模拟重载.
+7. 静态成员与实例成员
+
+7.1. 静态成员:通过构造函数去访问的成员
+
+一般将工具方法,比如($.ajax)设置为静态成员
+7.2. 实例成员:通过对象去访问的成员
+
+一般将于对象相关的成员,比如(.css) 设置为实例成员
+8. 作用域:
+
+8.1. 词法作用域(静态作用域): 在代码写好的时候,根据代码的书写结构确定变量的作用域
+
+8.2. 动态作用域: 根据代码的调用环境确定变量的作作用域. JavaScript没有动态作用域!!
+
+作用域的意义:保护变量.    
+8.3. JavaScript代码执行顺序:
+
+1 预解析阶段:会对变量的声明(变量只提升声明以及函数的声明提升到其当前作用域的顶部!    变量提升(hoisting)
+    * 函数形参赋值的过程是在 函数与变量提升之前
+    * 当两个函数同名的时候两个函数都会提升
+    * 当函数与变量同名的时候,会忽略变量声明,只提升函数声明
+    * 就算有多个script标签,全局作用域也只有一个,但声明提升是分段的
+    * 条件式函数声明在变量提升的时候会将条件是函数声明当做函数表达式处理只会提升函数名)
+    注:条件式函数声明:在条件语句中的函数声明
+2 自上而下执行     
+9. 沙箱模式: JS中的沙箱模式通过函数去实现的
+
+沙箱模式的基本模型:
+   (function(window){
+        //声明所有需要的变量
+        //写主要的功能代码
+        //如果需要，就通过window对象向外界暴露接口
+    })(window)
+9.1. 沙箱模式为什么要把window做为参数传进去？
+
+    1. 有利于代码压缩，因为原生的内置对象无法被压缩，使用形参接收后，形参是可以被压缩的
+    2. 实现隔离的思想，外界不直接去使用内部的东西，内部也不直接去访问外部的任何东西！
+    3. 沙箱的参数不都是window，而是如果要在沙箱内部使用沙箱外部的东西就需要把该东西当做参数，传递进沙箱内部！
+9.2. 沙箱模式应用在哪里？
+
+    1. 框架
+    2. 组件
+    3. 插件    
+10. 递归
+
+1 定义:在一个函数 通过名字直接或间接地调用自身
+2 用递归解决问题的关键点:化归思想.
+    例:    斐波那契数列第n项
+   function fib(n){
+        if(num <= 2) {
+            return 1;
+        } else {
+            return fib(n - 1) + fib(n - 2);
+        }
+    }
+    console.log(fib(6));
+3   * 递归的问题:时间复杂度多,产生多次重复计算发生效率问题 ,
+    * 解决方案:可以使用缓存容器解决;
+    例:  斐波那契数列第n项
+function recursive() {
+       var arr = [];             //记录已经找到的项,作为缓存,免于递归重复计算
+       return function(n) {
+        if (!arr[n]) {         //判断数组中有没有这一项,有的话直接返回
+               if (n <= 2) {
+                   arr[n] = 1;
+                } else {
+                   arr[n] = outer(n - 1) + outer(n - 2);
+               }
+           }
+        return arr[n];
+    }
+}
+var fib = recursive();
+console.log(fib(1000));
+  
+11. 闭包
+
+11.1. 定义: 一个具有封闭的对外不公开的包裹结构, 或空间.(有权访问另一个函数作用域中的变量的函数)
+
+11.2. 概念:可以访问独立数据的函数
+
+11.3. 作用:
+
+    * 1.保护数据
+    如果直接将数据定义全局中,那么将对数据失去控制权
+    使用闭包可以将数据保护起来,外界想要访问数据,必须通过指定的渠道,而制定渠道的方法,就是建立一个函数,在函数中建立校验机制以保证数据的合理性与安全性.
+    * 2.可以给函数提供私有的变量
+
+闭包的基本模型:
+   function outer(){
+        var a = 10;
+        var inner = {                //将两个方法封装为一个对象
+            getA:function(){        //获取数据
+                return a;
+            },
+            setA:function(形参){    //通过传入参数,设置数据
+                //可以在这建立校验机制以保证数据的合理性与安全性
+                a = 形参;
+           　　 return a;                //也可以不返回,只是设置
+            }
+        }
+        return inner;
+    }
+    var getFun = outer();            //先调用,再赋值,返回的是inner对象
+    console.log(getFun.getA());        //获取a
+    console.log(getFun.setA(实参));    //设置a
+    console.log(getFun.getA());        //再次获取的为修改后的a            
+
+实例:用延时定时器,逐个打印数字
+ for (var i = 0; i < 10; i++) {
+        function outer() {
+             var j = i;
+              function inner() {
+                  console.log(j);
+             }
+            return inner;
+        }
+            setTimeout(outer(),1000*i);
+ };
+ 
+
+11.4. 闭包的问题:不合理的使用会造成内存泄露,,因为闭包的内存空间会常驻内存,造成资源损耗
+
+12. JS是单线程的语言:
+
+   js中的任务: 在执行完主要任务之后才会执行次要任务
+
+    *主要任务(主逻辑代码)
+    *次要任务(例如setTimeout()与setInterval())
+13. 缓存:将数据临时存储起来,避免重复计算,以提高用户访问效率
+
+13.1. 浏览器缓存:
+
+将网站资源在浏览器端进行保存,用户在请求服务器的时候,这些被保运的资源直接从本地读取而不必去服务区读取,从而提高用户访问速度;
+13.2. CDN:
+
+* CDN系统能够实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上。使用户可就近取得所需内容，解决 Internet网络拥挤的状况，提高用户访问网站的响应速度。CDN的关键技术主要有内容存储和分发技术。
+* 实现原理:CDN广泛采用各种缓存服务器，在用户访问网站时，利用全局负载技术将用户的访问指向距离最近的缓存服务器上，由缓存服务器直接响应用户请求。
+13.3. 数据库缓存:
+
+静态的网站的内容都是些简单的静态网页直接存储在服务器上，可以非常容易地达到非常惊人的访问量。但是动态网站因为是动态的，也就是说每次用户访问一个页面，服务器要执行数据库查询，启动模板，执行业务逻辑到最终生成一个你所看到的网页，这一切都是动态即时生成的。从处理器资源的角度来看，这是比较昂贵的。
+对于大多数网络应用来说，过载并不是大问题。但是对于中等至大规模流量的站点来说，尽可能地解决过载问题是非常必要的。
+13.4. 硬件缓存:
+
+这是另一个领域的问题,这里暂时不做具体研究,有机会深入接触后再作补充
+</pre>
+
+</div>
+    </body>
+</html>

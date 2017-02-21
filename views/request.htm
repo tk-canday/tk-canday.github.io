@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" href="../images/shortcuticon.jpg">
+
+    <title>Ajax之 GET 与 POST </title>
+
+    <!-- Web App Manifest -->
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/tk-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="../css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0../css/font-awesome.min.css" rel="stylesheet" type="text../css"> -->
+    <!-- tk change font-awesome CDN to qiniu -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+    </head>
+
+    <body>
+	<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../index.html">tk-Canday Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="tkblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+               
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <header class="intro-header" >
+    <div class="header-mask"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                                             
+                        <a class="tag" href="../index.html" title="首页">返回首页</a>
+                        
+                    </div>
+                    <h1> Ajax(2)之——<br> GET 与 POST</h1>
+                    
+                    <h2 class="subheading"></h2>
+                    
+                    <span class="meta">Posted by tk-canday on August
+ 29, 2016</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div style='padding:0 15%;text-indent:20px;'>
+<pre style='background-color:white;font-size:16px;font-weight:600;'>
+	  在之前的随笔中,本着怀旧的态度总结了一篇 兼容不同浏览器 建立XHR对象的方法:
+
+  在建立好XHR对象之后,客户端需要做的就是,将数据以某种方式传递到服务器,以获得相应的响应,在这里,  Ajax技术总结的第二季,我将重点阐述 提交数据的两种方式。
+
+  在这之前需要了解一下我们的HTTP传输协议:
+
+HTTP 的工作方式是客户机与服务器之间的请求-应答协议。
+
+举例：客户端（浏览器）向服务器提交 HTTP 请求；服务器向客户端返回响应。响应包含关于请求的状态信息以及可能被请求的内容。而想要基于HTTP协议进行数据传输,必然要用到两种请求方式.
+
+两种 HTTP 请求方法：GET 和 POST
+
+在客户机和服务器之间进行请求-响应时，两种最常被用到的方法是：GET 和 POST。
+
+GET - 从指定的资源请求数据。
+POST - 向指定的资源提交要被处理的数据
+  这是W3C上对GRT与POST的使用场景描述,从字面上来理解，就是： GET是用来从服务器获取数据的，POST是用来向服务器传送数据的
+
+这一点，我们从提交路径与数据的URL中就可以看出来：
+
+  可以用来指向URL的属性有：
+
+1. 表单中的 action；
+
+2. a 标签中的 href
+
+3. img script 中的 src 属性（此属性不受“ 同源策略 ”限制，可以利用来进行“跨域”，我想近期总结一片关于跨域的问题，在这里先挖个坑）
+
+  这里，我们讲一讲form表单提交中他们的不同
+
+一 、Ajax的表单提交中，get 使用 open（）函数来提交数据，其中，数据以 URL? key & value 的形式拼接在URL后面：
+
+xhr.open('get','xxx.php?name=tom & age=18');
+
+xhr.send(null);
+   在浏览器的URL中是这样的:
+
+　　
+
+get 提交 URL
+
+这里可以看出:GET是把参数数据队列加到提交表单的action属性所指的URL中，值和表单内各个字段一一对应，在URL中可以看到。ID的url长度是有限制的，当url过长时会自动截取超长字符。这样就容易引发一个问题：当传递的参数过多，导致url过长时，url自动截取超长字符，最终传递参数部分获取不到。这也限制了GET传送的数据大小一般不能超过2KB;
+
+  而且,从URL截图中可以看出: GET安全性非常低，当通过GET方法提交数据时，用户名和密码将出现在URL上。如果： 
+- 登陆页面可以被浏览器缓存； 
+- 其他人可以访问客户的这台机器。 
+那么，别人即可以从浏览器的历史记录中，读取到此客户的账号和密码。所以，在某些情况下，GET方法会带来严重的安全性问题。
+
+并不是说GET方法没有优点，在速度测试中，get提交的速度是POST方式的数十倍。
+
+
+二 、Ajax的表单提交中，POST 在 open（）函数中只需要提供URL，由send（）函数提交数据:
+　　
+
+//获取form数据
+var formDom = document.querySelector('form');
+var formData = new FormData(formDom);
+//发送数据
+xhr.open('post',formDom.action);
+xhr.send(formData);
+ 
+
+POST是:通过HTTPPOST机制，将表单内各个字段与其内容放置在HTML HEADER内一起传送到action属性所指的URL地址。用户看不到这个过程。安全性较高 
+
+ POST传送的数据量较大，一般被默认为不受限制。可以用这段demo中FormData对象的方式传递图片,富文本等文件,这是get所做不到的。
+
+总结一下，Get是向服务器发索取数据的一种请求，而Post是向服务器提交数据的一种请求，在FORM（表单）中，Method默认为"GET"，
+
+实质上，GET和POST只是发送机制不同，并不是一个取一个发！
+
+总之，这两种表单提交方式并没有优劣之分，只有不同的适应场景，这需要我们日常工作中去根据需求把握。
+
+后面，我将总结一下，在浏览器与服务器之间的交互中，路径的几种不同书写方法。
+
+关于如如何跨浏览器建立XHR对象，请看我之前的文章
+
+ 
+</pre>
+
+</div>
+    </body>
+</html>
