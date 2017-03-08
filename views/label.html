@@ -73,7 +73,7 @@
     </div>
 </header>
 <div style='padding:0 15% 60px;text-indent:20px;'>
-	<p>今天去面试,碰到了一道题,也许是因为紧张或者喝水喝多了,一时竟然没有转过弯来,回来之后一细想原来这么简单,哭笑不得,特此记录一下!</p>
+	<p>今天去面试,碰到了一道题,也许是因为紧张或者喝水喝多了,一时竟然没有明白面试官的真正意图,回来之后一细想原来这么简单,哭笑不得,特此记录一下!</p>
 
 <h3>原题是这样的:  如何用一张图片代替 'input:file' 上传本地文件??</h3>
 
@@ -85,29 +85,36 @@
 
 <br>换成这样的:
 <br><img src="../images/filelabel.jpg" height="80" width="91" alt="">
+<br>
+当时我的解决方案是这样的:
+    <xmp style='background-color:rgba(0, 188, 212, 0.27)'>
+        <input type="file" style="display:none" name="" id="">
+        <img src="diy图片路径"  alt=""> 
+        <script>
+            document.querySelector('img').onclick = function(){
+                document.querySelector('input[type=file]').click();
+            }
+        </script>
+    </xmp>
 
-
-<br>当时我还讲了一下label与input之间的绑定关系,问到这个的时候竟然脑袋短路一时没想到用label这玩意儿??label作为一个双标签里面内容既然可以是文字那自然也可以是img啊!!
-
-<br><label> 是 HTMML定义的一个标签,他的 for 属性等于它相关元素的 id 元素时，可以进行功能的捆绑(简单点说就是你点label标签就相当于点击它所绑定的input)。
-
-<br>那有了这个东西想要实现这个功能就不能再简单了!!!
-
-<br>代码如下:
-
+<p>我的意图是将input标签隐藏,然后给img注册点击事件的同时给input挂载点击事件,触发input:file的默认行为。但这个方案遭到了面试老师的‘一票否决’。</p>
+他的理由是：“当你把标签隐藏后，你就无法给他注册事件了，因为你看不到他！！”
+<p>对于这个理论我实在不敢苟同,就算标签被隐藏掉,他依旧存在在DOM树上并没有消失,当然可以对它进行操作,关于这一点我们起了一些观点上的争执。</p>
+好吧,当时我确实没有固执自己的意见,毕竟跟面试老师起争执对我没有任何好处 ฅ۶ó ﹏ò
+<br>当后来面试官问到如何点击文本让input获取焦点的时候我才恍然明白他的真实意图,他应该是想让我用这种方法:
 <xmp style='background-color:rgba(0, 188, 212, 0.27)'>
 <form>
 　　<input type="file" id="file">
-  　　  <label for="file">　　<!--用for属性绑定file控件-->
-
+        <!--用for属性绑定file控件-->
+  　　  <label for="file">　　
 　　　　　　<img src="diy图片路径"  alt="">
-
 　　　　</label>
 </form>
 </xmp>
-看到没,就是这么简单,至于样式,清掉就OK啦!!
-<br>通过这件小事体现出一个很重要的道理,活学活用啊同志们~ ~
-
+    <br>label 是 HTML定义的一个标签,他的 for 属性的值等于它相关元素的 id 的值时，可以进行功能的捆绑(简单点说就是你点label标签就相当于点击它所绑定的input)。
+<br>那有了这个东西想要实现这个功能就不能再简单了!!!至于样式,清掉就OK啦!
+<br>不得不说,这种处理方法无论从语义话还是效率上都要比直接操作DOM好的多!!!
+<br>但是,作为一名开发者,一种功能实现肯定有多种处理办法,不去验证别人的方案就给予否决的话....
 </div>
     </body>
 </html>
