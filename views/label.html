@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="../css/syntax.css">
     </head>
 
-    <body>
+    <body ng-app='app' ng-controller='form'>
 	<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -129,6 +129,18 @@
 <p>她并没有将input隐藏掉,而是把它"变透明了",然后覆盖在图片上面 ╭(；ŎдŎ)╮ 简直鬼斧神工,我都没想到这点......不失为一个好方案!!</p>
 言而总之,实现的方法有很多,肯定还有其他的许多方法,不同的场景采取什么样的方案,就需要我们去仔细斟酌了。
 
+<h5 style="color:yellowgreen;">留下您的评论:</h5>
+<form ng-submit='get()'>
+<input type="text" id="write" ng-model='say' style='width:80%'>
+</form>
+<div style="margin:0 0 66px 20px;padding:10px;border: 1px solid #000;width:80%">
+<p ng-repeat='review in reviews' style="margin:6px;background-color: rgba(148, 189, 22, 0.22);">
+{{ review.text }} <span style='float:right;font-size:10px;'>{{ review.time }}</span>
+</p>
 </div>
+</div>
+<script src="../js/bower_components/angular/angular.min.js"></script>
+<script src="../js/bower_components/angular-route/angular-route.min.js"></script>
+<script src="../js/angular/controller.js"></script>
     </body>
 </html>

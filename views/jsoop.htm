@@ -1,105 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#000000">
     <link rel="icon" href="../images/shortcuticon.jpg">
-    
     <title>javascript的oop</title>
-
     <!-- Web App Manifest -->
-
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/tk-blog.min.css">
-
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="../css/syntax.css">
-
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0../css/font-awesome.min.css" rel="stylesheet" type="text../css"> -->
     <!-- tk change font-awesome CDN to qiniu -->
-
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
     <!-- ga & ba script hoook -->
     <script></script>
-    </head>
+</head>
 
-
-    <body>
-	<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="../index.html">tk-Canday Blog</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div id="tkblog_navbar">
-            <div class="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-               
-                </ul>
+<body ng-app='app' ng-controller='form'>
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../index.html">tk-Canday Blog</a>
             </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="tkblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
-
-    <header class="intro-header" >
-    <div class="header-mask"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                                             
-                        <a class="tag" href="../index.html" title="首页">返回首页</a>
-                        
+        <!-- /.container -->
+    </nav>
+    <header class="intro-header">
+        <div class="header-mask"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <div class="tags">
+                            <a class="tag" href="../index.html" title="首页">返回首页</a>
+                        </div>
+                        <h1> 什么是JavaScript中的面向对象? <br>与其他编程语言的面向对象有什么区别?<br> 什么是原型? </h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">Posted by tk-canday on September 02, 2016</span>
                     </div>
-                    <h1> 什么是JavaScript中的面向对象? <br>与其他编程语言的面向对象有什么区别?<br> 什么是原型? </h1>
-                    
-                    
-                    <h2 class="subheading"></h2>
-                    
-                    <span class="meta">Posted by tk-canday on September 02, 2016</span>
                 </div>
             </div>
         </div>
-    </div>
-</header>
-<div style='padding-left:20%;'>
-    面向对象与原型模式
-<br>1.1. js的对象:
-<br>定义:是"无序属性的集合,其属性可以包含基本值,对象,和函数",没有类的概念(其他面向对象的语言都有类的概念)
-<br>面向对象思维:把解决问题的关注点放在解决问题的所需对象上.
-<br>1.2. 面向对象的三大特性:
-<br>1.2.1. 封装
-<br>就是讲一系列属性和方法,也就是功能 ,封装在对象里面,对象对外界暴露一些接口,外界在使用的时候,<br>不需要关心对象内部的具体功能.
-<br>1.2.2. 继承
-<br>其他面向对象语言中的继承:有父子关系.
-<br>JS中的继承:自己没有的东西,别人有,拿过来用就是继承.
-<br>例:
-<pre>
+    </header>
+    <div style='padding-left:20%;'>
+        面向对象与原型模式
+        <br>1.1. js的对象:
+        <br>定义:是"无序属性的集合,其属性可以包含基本值,对象,和函数",没有类的概念(其他面向对象的语言都有类的概念)
+        <br>面向对象思维:把解决问题的关注点放在解决问题的所需对象上.
+        <br>1.2. 面向对象的三大特性:
+        <br>1.2.1. 封装
+        <br>就是讲一系列属性和方法,也就是功能 ,封装在对象里面,对象对外界暴露一些接口,外界在使用的时候,
+        <br>不需要关心对象内部的具体功能.
+        <br>1.2.2. 继承
+        <br>其他面向对象语言中的继承:有父子关系.
+        <br>JS中的继承:自己没有的东西,别人有,拿过来用就是继承.
+        <br>例:
+        <pre>
     var wangsicong = {};
     var wangjianlin = {
     money:9999,
@@ -109,32 +93,25 @@
 };
 console.log(wangsicong);
 </pre>
- <br>混入式继承(mix-in)
- <pre>
+        <br>混入式继承(mix-in)
+        <pre>
 for(var k in wangjianlin){
     wangsicong[k] = wangjianlin[k];
 }
 console.log(wangsicong);
-</pre> 
-
-
-
- <br> 原型的继承
- <br>   1通过混入的方式为原型新增成员,以实现继承
- <br>   2直接替换原型
-<pre>
+</pre>
+        <br> 原型的继承
+        <br> 1通过混入的方式为原型新增成员,以实现继承
+        <br> 2直接替换原型
+        <pre>
   var obj1 = {属性与方法};
   function Person(){};        //构造函数
   Person.prototype = obj1;        
   var P1 = Person();
-</pre> 
-
-
-<p>
-经典继承 :   Object.create()        //存在兼容问题
-  语法:  var 对象1 = Object.create(对象2);        //将对象2作为对象1的原型
-    兼容封装:
- <pre>
+</pre>
+        <p>
+            经典继承 : Object.create() //存在兼容问题 语法: var 对象1 = Object.create(对象2); //将对象2作为对象1的原型 兼容封装:
+            <pre>
     function = myCreate(obj){
         if(Object.create){
             return Object.create(obj);
@@ -145,19 +122,15 @@ console.log(wangsicong);
         }
     }
  </pre>
-</p>
-
-<br>1.2.3. 多态
-<br>多态就是父类指针指向子类对象.
-<br>JS中不支持多态
-<br>1.3. 创建对象的方式
-
-<br>1.3.1. 字面量
-
-<br> 优点:简单易用
-<br> 缺陷:复用性比较差
-
-<pre>
+        </p>
+        <br>1.2.3. 多态
+        <br>多态就是父类指针指向子类对象.
+        <br>JS中不支持多态
+        <br>1.3. 创建对象的方式
+        <br>1.3.1. 字面量
+        <br> 优点:简单易用
+        <br> 缺陷:复用性比较差
+        <pre>
 var  obj = {
     name:'小红',
     sayHi:function(){
@@ -165,18 +138,11 @@ var  obj = {
     }
 }
 </pre>
- 
-
-<br>1.3.2. 使用内置构造函数object
-
-<br> 缺陷:1创建出的是空对象;        2复用性差
-var obj = new object();
- 
-
-<br>1.3.3. 自定义构造函数
-
-<br>例:
-<pre>
+        <br>1.3.2. 使用内置构造函数object
+        <br> 缺陷:1创建出的是空对象; 2复用性差 var obj = new object();
+        <br>1.3.3. 自定义构造函数
+        <br>例:
+        <pre>
  function Person(形参){
     this.name = 形参,
     this.sarHi = function(){
@@ -187,57 +153,49 @@ var p1 = new Person(实参);
 var p2 = new Person(实参);
 console.log(p1.sarHi == p2.sarHi);    //false    不在同一个地址,但用的相同的方法
 </pre>
-<br> 什么是构造函数??    
-<br>构造函数一般是用来初始化对象的函数(不是创建对象:是new创建的)!
-<br> 构造函数的特点:
-<br>   * 首字母大写(规范)
-<br>   * 一般和new关键字一起使用
-<br>   * 不需要手动写返回语句,会默认返回新创建出来的对象.
-
-<br> 构造函数执行的过程:
-<br>   * 使用new关键字构造函数
-<br>   * 调用构造函数
-<br>   * 将构造函数内部的this指针指向创建出的对象
-<br>   * 使用this指针在构造函数内部对对象进行初始化操作(新增成员)
-<br>   * 默认的将创建出来的对象返回
-
-<br> 构造函数使用注意事项:
-<br>   * 如果没return,返回的是构造出的对象
-<br>   * 如果手动返回的是值类型的数据,不会对默认返回值有任何影响
-<br>   * 如果手动返回的是引用类型的数据,使用new关键字创建的对象被抛弃 
-<br>   * 将构造函数当做普通函数调用的时候,this指向window,如果返回值不写,返回undefined
-
-
-<br> 传统构造函数存在的问题:每次进来都创建相同的方法,造成资源浪费!
-<br>   * 解决:将函数声明放在构造函数外面,将构造函数的地址赋值给对象的方法.
-<br>   * 这样解决的问题:
-<br>       1全局变量污染
-<br>       2代码结构混乱,不利于维护
-<br>       3不安全 ,容易被人更改
-<br>   * 解决方案:原型    
-<br>.4. 原型模式
-
-<br>.4.1. 原型?:在构造函数创建出来的时候系统会默认的帮构造函数创建且关联一个空对象,这个对象就是原型
-
-<br>.4.2. 原型的作用?
-
-<br>在原型中的所有属性和方法,都可以被其关联的构造函数创建出来的对象所共享(与其他编程语言中的类可以相对应理解,但不相同)
-<br>1.4.3. 如何访问原型?
-
-<br>　　1 构造函数.prototype;
-<br>　　2 对象.__proto属性__(两个下划线)
-<br>* 非标准属性:ECMA中没有的属性,不推荐使用,只适合在调试过程中使用!(一般两个下划线开头的属性都是非标准的属性,<br>单下划线开头的是私有属性)
-<br>* 例:
- <pre>  
+        <br> 什么是构造函数??
+        <br>构造函数一般是用来初始化对象的函数(不是创建对象:是new创建的)!
+        <br> 构造函数的特点:
+        <br> * 首字母大写(规范)
+        <br> * 一般和new关键字一起使用
+        <br> * 不需要手动写返回语句,会默认返回新创建出来的对象.
+        <br> 构造函数执行的过程:
+        <br> * 使用new关键字构造函数
+        <br> * 调用构造函数
+        <br> * 将构造函数内部的this指针指向创建出的对象
+        <br> * 使用this指针在构造函数内部对对象进行初始化操作(新增成员)
+        <br> * 默认的将创建出来的对象返回
+        <br> 构造函数使用注意事项:
+        <br> * 如果没return,返回的是构造出的对象
+        <br> * 如果手动返回的是值类型的数据,不会对默认返回值有任何影响
+        <br> * 如果手动返回的是引用类型的数据,使用new关键字创建的对象被抛弃
+        <br> * 将构造函数当做普通函数调用的时候,this指向window,如果返回值不写,返回undefined
+        <br> 传统构造函数存在的问题:每次进来都创建相同的方法,造成资源浪费!
+        <br> * 解决:将函数声明放在构造函数外面,将构造函数的地址赋值给对象的方法.
+        <br> * 这样解决的问题:
+        <br> 1全局变量污染
+        <br> 2代码结构混乱,不利于维护
+        <br> 3不安全 ,容易被人更改
+        <br> * 解决方案:原型
+        <br>.4. 原型模式
+        <br>.4.1. 原型?:在构造函数创建出来的时候系统会默认的帮构造函数创建且关联一个空对象,这个对象就是原型
+        <br>.4.2. 原型的作用?
+        <br>在原型中的所有属性和方法,都可以被其关联的构造函数创建出来的对象所共享(与其他编程语言中的类可以相对应理解,但不相同)
+        <br>1.4.3. 如何访问原型?
+        <br>　　1 构造函数.prototype;
+        <br>　　2 对象.__proto属性__(两个下划线)
+        <br>* 非标准属性:ECMA中没有的属性,不推荐使用,只适合在调试过程中使用!(一般两个下划线开头的属性都是非标准的属性,
+        <br>单下划线开头的是私有属性)
+        <br>* 例:
+        <pre>  
 function Obj(){}
 var man = new Obj();
 console.log(Obj.prototype === man.__proto__);    //true
 
  </pre>
-<br>1.4.4. 原型的使用?
-
-<br>例1使用动态特性:        添加的成员少的时候
-<pre>
+        <br>1.4.4. 原型的使用?
+        <br>例1使用动态特性: 添加的成员少的时候
+        <pre>
 function Obj(){}
 Obj.prototype.sayHi = function(){
     console.log('我是原型中的sayHi');
@@ -245,12 +203,9 @@ Obj.prototype.sayHi = function(){
 var p1 = new Obj(); 
 var p2 = new Obj();
 console.log(p1.sayHi() == p2.sayHi())   //true
-</pre> 
-
-
-
- <br>例2:替换原型:        添加的成员多的时候
- <pre>
+</pre>
+        <br>例2:替换原型: 添加的成员多的时候
+        <pre>
 Obj.prototype = {
     属性,
     sayHi:function(){
@@ -258,62 +213,52 @@ Obj.prototype = {
     }
 var p1 = new Obj();
 var p2 = new Obj();
-</pre> 
-
-<br>1.4.5. 原型使用注意事项:
-
-<br>*对象只有访问不到本身属性的时候才会去原型中查找.设置属性不会去原型中查找
-<br>*一般情况下,只会将方法放在原型中,属性放在对象中(方法是一样的,每个对象的属性是不一样的)
-<br>*需要将原型放在上面,否则有可能访问不到
-<br>*替换原型的时候,替换之前的原型与替换之后的原型不一致
-<br>*对象的原型,就是创建对象的那一刻,构造函数所关联的原型
-<br>1.4.6. 实例化:通过构造函数实例化一个对象,(也就是所谓的创建对象)
-
-<br>1.4.7. 原型链:
-
-<br>js中所有的对象都有原型,原型也有对象,所以原型对象也有原型.
-<br># 构造函数.prototype的成员介绍:
-<br>    * constructor属性,从原型指向关联的构造函数(原型的属性)
-<br>        console.log(Obj.prototype.constructor);
-<br>    * 对象.hasOwnProperty(属性);            //判断对象有没有这个属性
-<br>    * 当前对象.isPrototypeOf(另一个对象);      //判断当前对象是不是另一个对象的原型
-<br>    * obj.propertyIsEnumerable(属性);        //判断属性是否属于此对象并且可以被遍历
-<br>    * __proto属性__
-<br>    * toString()    与     toLocaleString()
-<br>        都是将对象转换成字符串的方法
-<br>        但是toLocaleString()会将对象转换成本地格式的字符串
-<br>    * valueOf()
-<br>        获取属性得值    
-<br>        当引用类型与值类型的数据参与运算的时候会调用valueOf,如果不能运算再调用toString()
-<br> # 对象 instanceof 构造函数
-<br>    判断此构造函数的原型有没有在此对象的原型链上 
-
-<br>原型链实例:
-<br>　　下面是建立了一个preson对象:
-　
-<br>　　function Preson(){}
-<br>　　var preson = new Preson();
-<br>　　这是一条preson对象的完整的原型链:
-
-<br>1.4.8. 属性搜索原则:
-
-<br>*1当使用属性访问成员的时候,会先在对象自身查找
-<br>*2如果没有找到,就去对象的原型中查找
-<br>*3如果没有找到,就沿着原型链继续往上查找,直到null
-<br>1.5. 如何安全的扩展内置对象?
-
-<br>// 例1:避免这么做!!
-<pre>
+</pre>
+        <br>1.4.5. 原型使用注意事项:
+        <br>*对象只有访问不到本身属性的时候才会去原型中查找.设置属性不会去原型中查找
+        <br>*一般情况下,只会将方法放在原型中,属性放在对象中(方法是一样的,每个对象的属性是不一样的)
+        <br>*需要将原型放在上面,否则有可能访问不到
+        <br>*替换原型的时候,替换之前的原型与替换之后的原型不一致
+        <br>*对象的原型,就是创建对象的那一刻,构造函数所关联的原型
+        <br>1.4.6. 实例化:通过构造函数实例化一个对象,(也就是所谓的创建对象)
+        <br>1.4.7. 原型链:
+        <br>js中所有的对象都有原型,原型也有对象,所以原型对象也有原型.
+        <br># 构造函数.prototype的成员介绍:
+        <br> * constructor属性,从原型指向关联的构造函数(原型的属性)
+        <br> console.log(Obj.prototype.constructor);
+        <br> * 对象.hasOwnProperty(属性); //判断对象有没有这个属性
+        <br> * 当前对象.isPrototypeOf(另一个对象); //判断当前对象是不是另一个对象的原型
+        <br> * obj.propertyIsEnumerable(属性); //判断属性是否属于此对象并且可以被遍历
+        <br> * __proto属性__
+        <br> * toString() 与 toLocaleString()
+        <br> 都是将对象转换成字符串的方法
+        <br> 但是toLocaleString()会将对象转换成本地格式的字符串
+        <br> * valueOf()
+        <br> 获取属性得值
+        <br> 当引用类型与值类型的数据参与运算的时候会调用valueOf,如果不能运算再调用toString()
+        <br> # 对象 instanceof 构造函数
+        <br> 判断此构造函数的原型有没有在此对象的原型链上
+        <br>原型链实例:
+        <br>　　下面是建立了一个preson对象:
+        <br>　　function Preson(){}
+        <br>　　var preson = new Preson();
+        <br>　　这是一条preson对象的完整的原型链:
+        <br>1.4.8. 属性搜索原则:
+        <br>*1当使用属性访问成员的时候,会先在对象自身查找
+        <br>*2如果没有找到,就去对象的原型中查找
+        <br>*3如果没有找到,就沿着原型链继续往上查找,直到null
+        <br>1.5. 如何安全的扩展内置对象?
+        <br>// 例1:避免这么做!!
+        <pre>
 var arr = new Array();    //array构造函数
     Array.prototype.max = function(){
     return 1;
 }
 arr.max();
 </pre>
-<br>应当避免对内置对象进行直接修改,会影响别人代码!!
- 
-<br> 例2:应当这么做!!
-<pre>
+        <br>应当避免对内置对象进行直接修改,会影响别人代码!!
+        <br> 例2:应当这么做!!
+        <pre>
 function MyArray(){}
 MyArray.prototype = [];
 MyArray.prototype.max = function(){
@@ -322,8 +267,21 @@ MyArray.prototype.max = function(){
 var myarr = new MyArray();
 arr.max();
 </pre>
-<p>MyArray继承了数组的原型并进行扩展,并不会修改内置数组对象的原型</p>
- </div>
+        <p>MyArray继承了数组的原型并进行扩展,并不会修改内置数组对象的原型</p>
+        <br>这是一个手动创建XHR对象并使用最简单的方法。以后回继续进行更新。介绍其更详细的用法。
+        <h5 style="color:yellowgreen;">留下您的评论:</h5>
+        <form ng-submit='get()'>
+            <input type="text" id="write" ng-model='say' style='width:80%'>
+        </form>
+        <div style="margin:0 0 66px 0px;padding:10px;border: 1px solid #000;width:80%">
+            <p ng-repeat='review in reviews' style="margin:6px;background-color: rgba(148, 189, 22, 0.22);">
+                {{ review.text }} <span style='float:right;font-size:10px;'>{{ review.time }}</span>
+            </p>
+        </div>
+    </div>
+    <script src="../js/bower_components/angular/angular.min.js"></script>
+    <script src="../js/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="../js/angular/controller.js"></script>
+</body>
 
-    </body>
 </html>

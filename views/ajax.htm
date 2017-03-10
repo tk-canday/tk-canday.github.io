@@ -39,9 +39,7 @@
     <script></script>
   
     </head>
-
-
-    <body>
+    <body ng-app='app' ng-controller='form'>
 	<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -212,7 +210,7 @@ function createXHR(){
 
 <br>因为这篇文章主要是讲ajax，所以php部分我只用了最简单的echo
 
-<xmp>
+<xmp style='background-color:#f8f8f8'>
  <?php
     echo '成功了';
  ?>
@@ -240,6 +238,18 @@ function createXHR(){
 <br>小结
 
 <br>这是一个手动创建XHR对象并使用最简单的方法。以后回继续进行更新。介绍其更详细的用法。
+<h5 style="color:yellowgreen;">留下您的评论:</h5>
+<form ng-submit='get()'>
+<input type="text" id="write" ng-model='say' style='width:80%'>
+</form>
+<div style="margin:0 0 66px 20px;padding:10px;border: 1px solid #000;width:80%">
+<p ng-repeat='review in reviews' style="margin:6px;background-color: rgba(148, 189, 22, 0.22);">
+{{ review.text }} <span style='float:right;font-size:10px;'>{{ review.time }}</span>
+</p>
 </div>
+</div>
+<script src="../js/bower_components/angular/angular.min.js"></script>
+<script src="../js/bower_components/angular-route/angular-route.min.js"></script>
+<script src="../js/angular/controller.js"></script>
     </body>
 </html>

@@ -38,7 +38,7 @@
     <script></script>
     </head>
 
-    <body>
+    <body ng-app='app' ng-controller='form'>
 	<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -328,7 +328,18 @@ console.log(fib(1000));
 
 这是另一个领域的问题,这里暂时不做具体研究,有机会深入接触后再作补充
 </pre>
-
+<h5 style="color:yellowgreen;">留下您的评论:</h5>
+<form ng-submit='get()'>
+<input type="text" id="write" ng-model='say' style='width:80%'>
+</form>
+<div style="margin:0 0 66px 20px;padding:10px;border: 1px solid #000;width:80%">
+<p ng-repeat='review in reviews' style="margin:6px;background-color: rgba(148, 189, 22, 0.22);">
+{{ review.text }} <span style='float:right;font-size:10px;'>{{ review.time }}</span>
+</p>
 </div>
+</div>
+<script src="../js/bower_components/angular/angular.min.js"></script>
+<script src="../js/bower_components/angular-route/angular-route.min.js"></script>
+<script src="../js/angular/controller.js"></script>
     </body>
 </html>
