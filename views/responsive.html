@@ -41,7 +41,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ng-app='app' ng-controller='form'>
 
     <!-- Navigation -->
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
@@ -127,9 +127,7 @@
     header.intro-header{
         position: relative;
         background-image: url('./images/post-bg-rwd.jpg')
-    }
-
-    
+    }    
 </style>
 <header class="intro-header" >
     <div class="header-mask"></div>
@@ -155,7 +153,7 @@
 </header>
 
 <!-- Post Content -->
-<article>
+
     <div class="container">
         <div class="row">
 
@@ -320,7 +318,34 @@
 
 <!-- Service Worker -->
 
-
+<h6>留下您的评论:</h6>
+<form ng-submit='get()'>
+<input type="text" id="write" ng-model='say' style='width:60%'>
+</form>
+<div style="padding:10px;border: 1px solid #000;width:60%">
+<p ng-repeat='review in reviews' style="margin:6px;background-color: rgba(148, 189, 22, 0.22);">
+{{ review.text }} <span style='float:right;font-size:10px;'>{{ review.time }}</span>
+</p>
+</div>
+    </body>
+</html>
+<script src="../js/bower_components/angular/angular.min.js"></script>
+<script src="../js/bower_components/angular-route/angular-route.min.js"></script>
+<script>
+    angular.module('app',[])
+    .controller('form',['$scope',function($scope){
+        $scope.reviews = [];
+        $scope.get = function(){
+            $scope.reviews.unshift(
+                    {
+                      text:document.querySelector('#write').value,
+                      time:new Date().toLocaleString()
+                    }
+                );
+            $scope.say = '';
+        }
+    }])
+</script>
 
 </body>
 
